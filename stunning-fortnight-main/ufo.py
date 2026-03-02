@@ -2,14 +2,11 @@ import pygame
 import random
 from circleshape import CircleShape
 from constants import *
+import math
 
 class UFOShot(CircleShape):
     def __init__(self, x, y, velocity):
-        # We assume you have containers for UFO shots
-        if hasattr(self, "containers"):
-            super().__init__(self.containers)
-        else:
-            super().__init__()
+        super().__init__(x, y, 2)
             
         self.position = pygame.Vector2(x, y)
         self.velocity = velocity
@@ -27,10 +24,7 @@ class UFOShot(CircleShape):
 
 class UFO(CircleShape):
     def __init__(self, x, y):
-        if hasattr(self, "containers"):
-            super().__init__(self.containers)
-        else:
-            super().__init__()
+        super().__init__(x, y, 30)
         self.health = 10
         self.velocity = pygame.Vector2(random.uniform(-150, 150), random.uniform(-50, 50))
         self.shoot_timer = 2.0 # Fires every 2 seconds

@@ -15,8 +15,6 @@ def main():
 
     dt = 0
 
-    score = 0
-
     clocker = pygame.time.Clock()
 
     updatable = pygame.sprite.Group()
@@ -81,12 +79,13 @@ def main():
             for shot in shots:
                 if shot.collides_with(target):
                     # One method to rule them all!
-                    score += target.handle_hit()
+                    player.score += target.handle_hit()
                     shot.kill()
 
         for ufo_shot in ufo_shots:
             if player.collides_with(ufo_shot):
                 print("Killed by a UFO!")
+                print(f"Score: {player.score}")
                 sys.exit()  # Or reduce player health!
 
         for ufo_shot in ufo_shots:
@@ -99,7 +98,7 @@ def main():
             if asteroid.collides_with(player):
                 log_event("player_hit")
                 print("Game over!")
-                print(f"Score: {score}")
+                print(f"Score: {player.score}")
                 sys.exit()
 
         for event in pygame.event.get():
